@@ -8,6 +8,10 @@
 <body>
     <?php 
         include_once 'config.php'; 
+        include_once 'src/tarefas/data.php';
+        
+        #alterar_dados_json();
+
     ?>
     <h1><?php echo NOME_SITE ?></h1>
 
@@ -38,6 +42,8 @@
 
     <section>
         <h3>Tarefas criadas</h3>
+
+        <form action="" method="post">
           <?php
             require_once 'src/tarefas/data.php';
 
@@ -53,19 +59,43 @@
                     $arquviDecod = json_decode($verificar, true);
                     foreach($arquviDecod as $cabecalho)
                     {
-                           echo "Nome da tarefa :". $cabecalho['nome'] . "<br>";
-                           echo "Categoria :". $cabecalho['categoria'] . "<br>";
-                           echo "Desc Tarefa :" . $cabecalho['descricao'] . "<br>";
-                           echo "Criado :". formatando_datas($cabecalho['criado']). "<br>";
-                           echo "Data Para Finalizar :". formatando_datas($cabecalho['data_de_finalizacao']). "<br>";
-                           echo "<label for='status'>Status da tarefa : </label>" . ($cabecalho['status'] == false ? 'Tarefa Pendente' : "Tarefa concluida"). "<br><br>";
+                        if($cabecalho['prioridade'] == 'Urgente 1' or $cabecalho['prioridade'] == "Urgente"){
+                               echo "Nome da tarefa :". $cabecalho['nome'] . "<br>";
+                               echo "Categoria :". $cabecalho['categoria'] . "<br>";
+                               echo "Prioridade :". $cabecalho['prioridade'] . "<br>";
+                               echo "Desc Tarefa :" . $cabecalho['descricao'] . "<br>";
+                               echo "Criado :". formatando_datas($cabecalho['criado']). "<br>";
+                               echo "Data Para Finalizar :". formatando_datas($cabecalho['data_de_finalizacao']). "<br>";
+                               echo "<label for='status'>Status da tarefa : </label>" . ($cabecalho['status'] == false ? 'Tarefa Pendente' : "Tarefa concluida"). "<br><br>";
+                        }
+                        if($cabecalho['prioridade'] == 'medio'){
+                               echo "Nome da tarefa :". $cabecalho['nome'] . "<br>";
+                               echo "Categoria :". $cabecalho['categoria'] . "<br>";
+                               echo "Prioridade :". $cabecalho['prioridade'] . "<br>";
+                               echo "Desc Tarefa :" . $cabecalho['descricao'] . "<br>";
+                               echo "Criado :". formatando_datas($cabecalho['criado']). "<br>";
+                               echo "Data Para Finalizar :". formatando_datas($cabecalho['data_de_finalizacao']). "<br>";
+                               echo "<label for='status'>Status da tarefa : </label>" . ($cabecalho['status'] == false ? 'Tarefa Pendente' : "Tarefa concluida"). "<br><br>";
+                        }
+                        else{
+                               echo "Nome da tarefa :". $cabecalho['nome'] . "<br>";
+                               echo "Categoria :". $cabecalho['categoria'] . "<br>";
+                               echo "Prioridade :". $cabecalho['prioridade'] . "<br>";
+                               echo "Desc Tarefa :" . $cabecalho['descricao'] . "<br>";
+                               echo "Criado :". formatando_datas($cabecalho['criado']). "<br>";
+                               echo "Data Para Finalizar :". formatando_datas($cabecalho['data_de_finalizacao']). "<br>";
+                               echo "<label for='status'>Status da tarefa : </label>" . ($cabecalho['status'] == false ? 'Tarefa Pendente' : "Tarefa concluida"). "<br><br>";
+                        }
                     }
+                    
                 }
             }else
             {
                 echo 'entrei aqui';
             }
         ?>
+
+        </form>
     </section>
 </body>
 </html>

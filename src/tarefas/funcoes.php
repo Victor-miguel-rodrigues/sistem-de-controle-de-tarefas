@@ -117,9 +117,5 @@ function dados_post()
    }
 }
 
-function prioridade_tarefas()
-{
-
-}
 
 dados_post();

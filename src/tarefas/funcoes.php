@@ -1,7 +1,7 @@
 <?php
 
 include_once  '../dados/tarefas.php';
-
+include_once '../sql/functions_sql.php';
 
 /**
  * Summary of tarefas
@@ -99,7 +99,8 @@ function dados_post()
             }else
             {
                 // função para trabalhar a tarefa
-                tarefas($nomeTarefa,false,$tipoTarefa,$descricaoTarefa,$dataCriacao,$dataFinalizacao);
+                //tarefas($nomeTarefa,false,$tipoTarefa,$descricaoTarefa,$dataCriacao,$dataFinalizacao);
+                inserir_dados($nomeTarefa,$tipoTarefa,$descricaoTarefa,$dataCriacao,$dataFinalizacao);
             }
         }else 
         {

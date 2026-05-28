@@ -1,101 +1,20 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php 
-        include_once 'config.php'; 
-        include_once 'src/tarefas/data.php';
-        
-        #alterar_dados_json();
+<?php
+include_once 'config.php'; 
+//include_once 'src/tarefas/data.php';
 
-    ?>
-    <h1><?php echo NOME_SITE ?></h1>
+echo "<br>";
+echo "". NOME_SITE. " ";
+echo "<br>";
 
-    <h2>Dados da tarefa</h2>
-    <form action="./src/tarefas/funcoes.php" method="post" >
-        
-        <label for="nome_tarefa">Nome da tarefa</label>
-        <input type="text" name="nome_tarefa" id="nome_tarefa"> <br>
-        <label for="tipo_tarefa">categoria da tarefa</label>
-        <input type="text" name="tipo_tarefa" id="tipo_tarefa"> <br>
-        <label for="descricao_tarefa">Descrição</label>
-        <input type="text" name="descricao_tarefa" id="descricao_tarefa"> <br>
-        <label for="data_criacao">data de iniciação da tarefa</label>
-        <input type="date" name="data_criacao" id="data_criacao"> <br>
-        <label for="data_finalizacao_tarefa">Data de finalização da tarefa</label>
-        <input type="date" name="data_finalizacao_tarefa" id="data_finalizacao_tarefa"> <br>
-        <button name="btn" type="submit">Criar tarefa</button>
-    </form>
-    <?php
-        if(isset($_GET['invalido']) and $_GET['invalido'] == 'error')
-        {
-            echo "<br><p>". "Error: Tentativa de envio de dados falhou dados nulo ou incorretos". "</p>";
-        }else if(isset($_GET['data']) and $_GET['data'] == 'invalid')
-        {
-            echo "<br><p>". "Error: Data de criação não pode ser maior que data de finalização ou vice-versa". "</p>";
-        }
-    ?>
-
-    <section>
-        <h3>Tarefas criadas</h3>
-
-        <form action="" method="post">
-          <?php
-            require_once 'src/tarefas/data.php';
+include_once 'view/tarefa.php';
 
 
-            $caminho = 'src/dados/dados.json';
+if(isset($_GET['invalido']) and $_GET['invalido'] == 'error')
+{
+    echo "<br><p>". "Error: Tentativa de envio de dados falhou dados nulo ou incorretos". "</p>";
+}else if(isset($_GET['data']) and $_GET['data'] == 'invalid')
+{
+    echo "<br><p>". "Error: Data de criação não pode ser maior que data de finalização ou vice-versa". "</p>";
+}
 
-            
-            if(file_exists($caminho))
-            {
-                $verificar = file_get_contents($caminho);
-                if(!empty($verificar))
-                {
-                    $arquviDecod = json_decode($verificar, true);
-                    foreach($arquviDecod as $cabecalho)
-                    {
-                        if($cabecalho['prioridade'] == 'Urgente 1' or $cabecalho['prioridade'] == "Urgente"){
-                               echo "Nome da tarefa :". $cabecalho['nome'] . "<br>";
-                               echo "Categoria :". $cabecalho['categoria'] . "<br>";
-                               echo "Prioridade :". $cabecalho['prioridade'] . "<br>";
-                               echo "Desc Tarefa :" . $cabecalho['descricao'] . "<br>";
-                               echo "Criado :". formatando_datas($cabecalho['criado']). "<br>";
-                               echo "Data Para Finalizar :". formatando_datas($cabecalho['data_de_finalizacao']). "<br>";
-                               echo "<label for='status'>Status da tarefa : </label>" . ($cabecalho['status'] == false ? 'Tarefa Pendente' : "Tarefa concluida"). "<br><br>";
-                        }
-                        if($cabecalho['prioridade'] == 'medio'){
-                               echo "Nome da tarefa :". $cabecalho['nome'] . "<br>";
-                               echo "Categoria :". $cabecalho['categoria'] . "<br>";
-                               echo "Prioridade :". $cabecalho['prioridade'] . "<br>";
-                               echo "Desc Tarefa :" . $cabecalho['descricao'] . "<br>";
-                               echo "Criado :". formatando_datas($cabecalho['criado']). "<br>";
-                               echo "Data Para Finalizar :". formatando_datas($cabecalho['data_de_finalizacao']). "<br>";
-                               echo "<label for='status'>Status da tarefa : </label>" . ($cabecalho['status'] == false ? 'Tarefa Pendente' : "Tarefa concluida"). "<br><br>";
-                        }
-                        else{
-                               echo "Nome da tarefa :". $cabecalho['nome'] . "<br>";
-                               echo "Categoria :". $cabecalho['categoria'] . "<br>";
-                               echo "Prioridade :". $cabecalho['prioridade'] . "<br>";
-                               echo "Desc Tarefa :" . $cabecalho['descricao'] . "<br>";
-                               echo "Criado :". formatando_datas($cabecalho['criado']). "<br>";
-                               echo "Data Para Finalizar :". formatando_datas($cabecalho['data_de_finalizacao']). "<br>";
-                               echo "<label for='status'>Status da tarefa : </label>" . ($cabecalho['status'] == false ? 'Tarefa Pendente' : "Tarefa concluida"). "<br><br>";
-                        }
-                    }
-                    
-                }
-            }else
-            {
-                echo 'entrei aqui';
-            }
-        ?>
-
-        </form>
-    </section>
-</body>
-</html>
+include_once 'view/header.php';

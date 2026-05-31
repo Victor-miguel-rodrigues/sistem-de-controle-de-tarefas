@@ -100,7 +100,7 @@ function dados_post()
             {
                 // função para trabalhar a tarefa
                 //tarefas($nomeTarefa,false,$tipoTarefa,$descricaoTarefa,$dataCriacao,$dataFinalizacao);
-                inserir_dados($nomeTarefa,$tipoTarefa,$descricaoTarefa,$dataCriacao,$dataFinalizacao);
+                inserir_dados($nomeTarefa,false,$tipoTarefa,prioridade_tarefas($dataCriacao,$dataFinalizacao),$descricaoTarefa,$dataCriacao,$dataFinalizacao);
             }
         }else 
         {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +11,20 @@
 
         <form action="" method="post">
           <?php
-            require_once './src/tarefas/data.php';
+            require_once 'src/sql/functions_sql.php';
+
+            exibir();
+        ?>
+
+        </form>
+    </section>
+</body>
+</html>
 
 
-            $caminho = './src/dados/dados.json';
+<?php
+/*
+ $caminho = './src/dados/dados.json';
 
             
             if(file_exists($caminho))
@@ -59,9 +69,4 @@
             {
                 echo 'entrei aqui';
             }
-        ?>
-
-        </form>
-    </section>
-</body>
-</html>
+*/

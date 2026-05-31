@@ -38,7 +38,7 @@ function formatando_datas($data)
 
 function  alterar_dados_json()
 {
-    $caminho = 'src/dados/dados.json';
+    $caminho = '../dados/dados.json';
     
     if(file_exists($caminho))
     {
@@ -156,3 +156,7 @@ if(file_exists($caminho))
     }
 
     */
+
+
+
+alterar_dados_json();
